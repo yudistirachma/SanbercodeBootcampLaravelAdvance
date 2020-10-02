@@ -4,12 +4,12 @@
 Route::namespace('Auth')->group(function (){
     Route::post('register', 'RegisterController');
     Route::post('login', 'LoginController');
-    Route::post('logout', 'LogoutController');
+    Route::post('logout', 'LogoutController')->middleware('auth:api');
 });
 
 Route::get('user', 'UserController');
 
-Route::prefix('buku')->group(function () {
+Route::prefix('buku')->middleware('auth:api')->group(function () {
     Route::get('/', 'BukuController@index');
     Route::get('get', 'BukuController@get');
     Route::delete('delete', 'BukuController@delete');
@@ -17,7 +17,7 @@ Route::prefix('buku')->group(function () {
     Route::post('insert', 'BukuController@store');
 });
 
-Route::prefix('pinjam')->group(function () {
+Route::prefix('pinjam')->middleware('auth:api')->group(function () {
     Route::post('/', 'PinjamController@pinjam');
     Route::get('index', 'PinjamController@index');
     Route::get('get', 'PinjamController@get');
