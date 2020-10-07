@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue js</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <comments v-for="comment in comments" :comment="comment"></comments>
+        </ul>
+
+        <textarea v-model="commentText" name="textArea" id="textArea" cols="40" rows="10" @keyup.enter="postComment"></textarea>
+    </div>
+
+    <template id="comment-template">
+        <div>
+            <button type="submit" @click="tambah">+</button>
+            <div>{{comment.body}} | {{comment.time}} | {{score}}</div>
+            <button type="submit" @click="kurang">-</button>
+            <br><br>
+        </div>
+    </template>
+
+    <script src="vue.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
