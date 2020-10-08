@@ -44,7 +44,7 @@ let vm = new Vue({
     methods : {
         postComment : function () {
             this.comments.push (
-                {body : this.commentText, time : "2020" , score : 0}
+                {body : this.commentText, time : "2020"    , score : 0}
             )
             this.commentText = ''
         }
