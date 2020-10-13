@@ -1,6 +1,8 @@
 import Home  from '../views/Home.vue';
 import About  from '../views/About.vue';
 import Contact  from '../views/Contact.vue';
+import NewNote from '../views/Notes/Create.vue';
+import { create } from 'lodash';
 
 export default {
     mode : 'history',
@@ -20,6 +22,11 @@ export default {
             path : '/contact',
             name : 'pages.contact',
             component : Contact
+        },
+        {
+            path : '/notes/create',
+            name : 'notes.create',
+            component : NewNote
         }
     ]
 }

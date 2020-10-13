@@ -19,6 +19,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except = [
-        //
+        // '/api/notes/*'
+        '/api/notes/create-new-note'
+        // 'http://localhost:8000/api/notes/create-new-note'
     ];
 }
