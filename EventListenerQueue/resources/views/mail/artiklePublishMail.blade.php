@@ -15,7 +15,7 @@
         conratulation {{$userArtikle}} your article have been published by {{$userEditor}}
     </h1>
     <p>
-        cek your article here <a href="{{url('artikle/show/'. $artikle)}}">cek article</a>
+        cek your article here <a href="{{url('artikle/'. $artikle)}}">cek article</a>
     </p>
 
    

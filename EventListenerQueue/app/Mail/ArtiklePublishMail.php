@@ -2,12 +2,10 @@
 
 namespace App\Mail;
 
-use App\Artikle;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\User;
 
 class ArtiklePublishMail extends Mailable
 {
@@ -22,7 +20,7 @@ class ArtiklePublishMail extends Mailable
      *
      * @return void
      */
-    public function __construct(User $userEditor, $userArtikle, $artikle)
+    public function __construct($userEditor, $userArtikle, $artikle)
     {
         $this->userEditor = $userEditor;
         $this->userArtikle = $userArtikle;

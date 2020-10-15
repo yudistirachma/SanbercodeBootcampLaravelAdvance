@@ -13,7 +13,7 @@
                     </div>
                     <div class="p-2 bd-highlight">Status : @if ($artikle->publish == true) Published @else not published @endif</div>
                     <div class="ml-auto p-2 bd-highlight">
-                        @if ($artikle->publish == false)
+                        @if ($artikle->publish == false && Auth::user()->role == "editor")
                             <form action="{{url('artikle/publish/'.$artikle->id)}}" method="POST">
                                 @method('PUT')
                                 @csrf

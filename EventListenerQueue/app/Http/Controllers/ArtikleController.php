@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Artikle;
+use App\Events\ArtiklePublishEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ArtiklePublishMail;
 
 class ArtikleController extends Controller
 {
@@ -37,6 +36,7 @@ class ArtikleController extends Controller
 
     public function show(Artikle $artikle)
     {
+        // dd(Auth::user()->role);
         return view('artikle.show', compact('artikle'));
     }
 
@@ -69,10 +69,10 @@ class ArtikleController extends Controller
     }
 
     public function publish(Artikle $artikle)
-    { 
+    {         
         $artikle->update(["publish" => true]);
-
-        Mail::to($artikle->user)->send(new ArtiklePublishMail(request()->user(), $artikle->user->name, $artikle->id));
+      
+        event(new ArtiklePublishEvent(request()->user(), $artikle->user->name, $artikle->id));
 
         return redirect('/artikle');
     }
