@@ -1,5 +1,7 @@
 <?php
 
+// use Illuminate\Routing\Route;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -13,3 +15,4 @@ Route::get('auth/{provider}/callback', 'Auth\SocialiteController@handleProviderC
 
 
 Route::resource('artikle', 'ArtikleController');
+Route::put('artikle/publish/{artikle}', 'ArtikleController@publish');

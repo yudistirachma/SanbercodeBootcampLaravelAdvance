@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Artikle extends Model
 {
     protected $fillable = ['user_id', 'title', 'artikle', 'publish'];
-
-    protected $atribute = ['publish' => false];
+    protected $attributes = ['publish' => false];
 
     public function user()
     {
