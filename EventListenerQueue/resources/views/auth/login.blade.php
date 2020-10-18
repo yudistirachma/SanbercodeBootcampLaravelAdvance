@@ -74,6 +74,12 @@
                                     login up with facebook
                                 </a>
                             </div>
+                            <div class="col-md-12">
+                                <a href="{{ url('auth/google') }}" class="btn btn-google">
+                                    <li class="fa fa-google"></li>
+                                    login up with google
+                                </a>
+                            </div>
                         </div>
                     </form>
                 </div>
