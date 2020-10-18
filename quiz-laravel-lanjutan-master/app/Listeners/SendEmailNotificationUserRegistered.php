@@ -6,7 +6,7 @@ use App\Events\UserRegisteredEvent;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Mail\UserRegisteredMail;
-use Mail;
+use Illuminate\Support\Facades\Mail;
 
 class SendEmailNotificationUserRegistered implements ShouldQueue
 {

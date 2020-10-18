@@ -5,14 +5,16 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TodoRequest;
 use Illuminate\Http\Request;
-use App\Todo;
+use App\Models\Todo;
+use App\Events\TodoCreatedEvent;
+use App\Http\Resources\TodoResource;
 
 
 class TodoController extends Controller
 {
   public function index(){
 
-      $todos = Todo::where('user_id' , user()->id)->orderBy('created_at' , 'desc')->get();
+      $todos = Todo::where('user_id' , auth()->user()->id)->orderBy('created_at' , 'desc')->get();
 
       return TodoResource::collection($todos);
     }
@@ -46,6 +48,6 @@ class TodoController extends Controller
         'done' => $update
       ]);
 
-      return new TodoResources($todos);
+      return new TodoResource($todo);
     }
 }

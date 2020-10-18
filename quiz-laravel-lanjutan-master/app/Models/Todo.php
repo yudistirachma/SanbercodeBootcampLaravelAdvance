@@ -9,6 +9,6 @@ class Todo extends Model
   protected $guarded = [];
 
   public function user(){
-    return belongsTo('App\User');
+    return $this->belongsTo(User::class);
   }
 }

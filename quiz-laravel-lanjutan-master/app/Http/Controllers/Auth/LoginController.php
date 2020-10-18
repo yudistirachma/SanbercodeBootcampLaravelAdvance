@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -21,7 +22,8 @@ class LoginController extends Controller
 
       $credentials = $request->only(['no_hp', 'password']);
 
-      if (! $token = auth()->attempts($credentials)) {
+      if (!$token = auth()->attempt($credentials))
+      {
           return response()->json(['error' => 'Unauthorized'], 401);
       }
 
