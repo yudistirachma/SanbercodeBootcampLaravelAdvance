@@ -16,7 +16,7 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke()
+    public function __invoke(RegisterRequest $request)
     {
       // dd($request);
       $data = [];
