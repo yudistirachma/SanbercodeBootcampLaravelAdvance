@@ -21,7 +21,7 @@ class LoginController extends Controller
 
       $data = [];
 
-      $credentials = $request->only('no_hp', 'password');
+      $credentials = $request->only(['no_hp', 'password']);
 
       if (!$token = auth()->attempt($credentials))
       {
