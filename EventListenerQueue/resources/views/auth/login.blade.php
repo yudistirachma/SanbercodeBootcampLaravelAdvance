@@ -68,14 +68,14 @@
                         <br>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-12">
-                                <a href="{{ url('auth/facebook') }}" class="btn btn-facebook">
+                            <div class="col text-center">
+                                <a href="{{ url('auth/facebook') }}" class="btn btn-outline-primary">
                                     <li class="fa fa-facebook"></li>
                                     login up with facebook
                                 </a>
                             </div>
-                            <div class="col-md-12">
-                                <a href="{{ url('auth/google') }}" class="btn btn-google">
+                            <div class="col  text-center">
+                                <a href="{{ url('auth/google') }}" class="btn btn-outline-primary">
                                     <li class="fa fa-google"></li>
                                     login up with google
                                 </a>

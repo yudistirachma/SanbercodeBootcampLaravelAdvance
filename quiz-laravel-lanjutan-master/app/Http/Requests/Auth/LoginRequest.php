@@ -24,7 +24,7 @@ class LoginRequest extends FormRequest
     public function rules()
     {
       return [
-        'no_hp' => ['required' ],
+        'no_hp' => ['required'],
         'password' => ['required']
       ];
     }
