@@ -2,8 +2,6 @@
 
 
 Route::group([
-
-    'middleware' => 'api',
     'prefix' => 'auth',
     'namespace' => 'Auth'
 

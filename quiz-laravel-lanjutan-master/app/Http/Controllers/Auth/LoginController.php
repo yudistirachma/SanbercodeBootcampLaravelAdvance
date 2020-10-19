@@ -6,6 +6,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class LoginController extends Controller
 {
@@ -20,13 +21,12 @@ class LoginController extends Controller
 
       $data = [];
 
-      $credentials = $request->only(['no_hp', 'password']);
+      $credentials = $request->only('no_hp', 'password');
 
       if (!$token = auth()->attempt($credentials))
       {
           return response()->json(['error' => 'Unauthorized'], 401);
       }
-
       $data['token'] = $token;
       $data['user'] = Auth::user();
 

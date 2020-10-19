@@ -20,6 +20,8 @@ class User extends Authenticatable implements JWTSubject
         'name', 'email', 'password', 'no_hp'
     ];
 
+    protected $keyType = 'no_hp';
+
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -16,8 +16,9 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(RegisterRequest $request)
+    public function __invoke()
     {
+      // dd($request);
       $data = [];
 
       $user = User::create([
@@ -29,7 +30,7 @@ class RegisterController extends Controller
 
       $data['user'] = $user;
 
-      event(new UserRegisteredEvent($user));
+      // event(new UserRegisteredEvent($user));
 
       return response()->json([
          'response_code' => '00',
