@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Chat::class, function (Faker $faker) {
     return [
-        'subject' => $faker->name,
+        'subject' => $faker->sentence(7),
         'user_id' => User::all()->random()->id,
     ];
 });
