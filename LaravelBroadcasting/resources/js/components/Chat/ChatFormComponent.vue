@@ -46,7 +46,6 @@
                 .then(response => {
                     BusEvent.$emit('chat.sent', newChat);
                     this.body = '';
-                    console.log(response);
                 })
 
                 

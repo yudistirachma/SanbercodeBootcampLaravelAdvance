@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chat;
+use App\Events\ChatStoredEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,6 +24,8 @@ class ChatController extends Controller
             "subject" => $request->subject,
             "user_id" => auth()->user()->id
         ]);
+
+        broadcast(new ChatStoredEvent($chat))->toOthers();
 
         return $chat;
     }

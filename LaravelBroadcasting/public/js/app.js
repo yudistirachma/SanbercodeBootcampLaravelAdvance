@@ -1980,7 +1980,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function (response) {
         _bus__WEBPACK_IMPORTED_MODULE_1__["default"].$emit('chat.sent', newChat);
         _this.body = '';
-        console.log(response);
       });
     }
   }
@@ -2058,6 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../bus */ "./resources/js/bus.js");
 //
 //
 //
@@ -2073,8 +2073,27 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-/* harmony default export */ __webpack_exports__["default"] = ({});
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      users: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$on('chat.here', function (users) {
+      _this.users = users;
+    }).$on('chat.joining', function (user) {
+      _this.users.push(user);
+    }).$on('chat.leaving', function (user) {
+      _this.users = _this.users.filter(function (u) {
+        return u.id !== user.id;
+      });
+    });
+  }
+});
 
 /***/ }),
 
@@ -66142,28 +66161,30 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [_vm._v("User list")]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v("\n                    User list\n                ")
-            ])
-          ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [
+            _vm._v("User online : " + _vm._s(_vm.users.length))
+          ]),
+          _vm._v(" "),
+          _c(
+            "ul",
+            { staticClass: "list-group list-group-flush" },
+            _vm._l(_vm.users, function(user) {
+              return _c("li", { staticClass: "list-group-item" }, [
+                _vm._v(_vm._s(user.name))
+              ])
+            }),
+            0
+          )
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -78468,6 +78489,8 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   encrypted: true
 });
 
+__webpack_require__(/*! ./echo */ "./resources/js/echo.js");
+
 /***/ }),
 
 /***/ "./resources/js/bus.js":
@@ -78846,6 +78869,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/echo.js":
+/*!******************************!*\
+  !*** ./resources/js/echo.js ***!
+  \******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _bus__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bus */ "./resources/js/bus.js");
+
+Echo.join('chat-channel').here(function (users) {
+  _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('chat.here', users);
+}).joining(function (user) {
+  _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('chat.joining', user);
+}).leaving(function (user) {
+  _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('chat.leaving', user);
+}).listen('ChatStoredEvent', function (e) {
+  _bus__WEBPACK_IMPORTED_MODULE_0__["default"].$emit('chat.sent', e.data);
+});
 
 /***/ }),
 
